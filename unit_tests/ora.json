@@ -1,0 +1,29 @@
+[{
+    "memory": {
+        "0x0000": 9,
+        "0x0001": 255
+    },
+    "initial_state": {
+        "pc": 0
+    },
+    "cycles": 2,
+    "expected_state": {
+        "pc": 2,
+        "registers": {
+            "a": 255,
+            "x": 0,
+            "y": 0,
+            "status": {
+                "N": false,
+                "V": false,
+                "B": false,
+                "D": false,
+                "I": false
+            }
+        },
+        "memory": {
+            "0x0000": 9,
+            "0x0001": 255
+        }
+    }
+}]
