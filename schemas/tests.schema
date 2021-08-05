@@ -1,0 +1,139 @@
+{
+   "$schema":"http://json-schema.org/draft-07/schema#",
+   "$id":"http://example.com/example.json",
+   "type":"array",
+   "title":"The root schema",
+   "description":"The root schema comprises the entire JSON document.",
+   "items":{
+      "anyOf":[
+         {
+            "type":"object",
+            "title":"The first anyOf schema",
+            "description":"An explanation about the purpose of this instance.",
+           "required": ["memory", "cycles"],
+            "properties":{
+               "memory":{
+                  "type":"object",
+                  "title":"The memory schema",
+                  "description":"An explanation about the purpose of this instance.",
+                  "additionalProperties":true
+               },
+               "cycles":{
+                  "type":"integer",
+                  "title":"The cycles schema",
+                  "description":"An explanation about the purpose of this instance.",
+                  "default":0
+               },
+               "initial_state":{
+                  "$ref":"#/$defs/state"
+               },
+               "expected_state":{
+                  "$ref":"#/$defs/state"
+               }
+            }
+         }
+      ]
+   },
+   "$defs":{
+     "register": { "type":"integer",
+                     "default": 0,
+					 "minimum": 0,
+      				 "maximum": 255
+                
+     },
+      "state":{
+         "type":"object",
+         "title":"The state schema",
+         "description":"Schema which describe the state of an emulator, every value can be skipped and will be treaded as 0 or null",
+        "additionalProperties": false,
+        "required": ["comment"],
+         "properties":{
+           "comment":{
+               "type":"string",
+               "title":"comment",
+               "description":"An explanation about the purpose of this instance.",
+               "default":0
+            },
+            "pc":{
+               "type":"integer",
+               "title":"The pc schema",
+               "description":"An explanation about the purpose of this instance.",
+               "default":0
+            },
+            "registers":{
+               "type":"object",
+               "title":"The registers schema",
+               "description":"An explanation about the purpose of this instance.",
+               "additionalProperties": false,
+               "properties":{
+                  "a":{
+                     "$ref":"#/$defs/register"
+                  },
+                  "x":{
+                     "$ref":"#/$defs/register"
+                  },
+                  "y":{
+                     "$ref":"#/$defs/register"
+                  },
+                  "status":{
+                     "type":"object",
+                     "title":"The status schema",
+                     "description":"An explanation about the purpose of this instance.",
+                     "properties":{
+                        "N":{
+                           "type":"boolean",
+                           "title":"The N schema",
+                           "description":"An explanation about the purpose of this instance.",
+                           "default":false
+                        },
+                        "V":{
+                           "type":"boolean",
+                           "title":"The V schema",
+                           "description":"An explanation about the purpose of this instance.",
+                           "default":false
+                        },
+                        "B":{
+                           "type":"boolean",
+                           "title":"The B schema",
+                           "description":"An explanation about the purpose of this instance.",
+                           "default":false
+                        },
+                        "D":{
+                           "type":"boolean",
+                           "title":"The D schema",
+                           "description":"An explanation about the purpose of this instance.",
+                           "default":false
+                        },
+                        "I":{
+                           "type":"boolean",
+                           "title":"The I schema",
+                           "description":"An explanation about the purpose of this instance.",
+                           "default":false
+                        }
+                     }
+                  }
+               }
+            },
+            "memory":{
+               "type":"object",
+               "title":"The memory schema",
+               "description":"An explanation about the purpose of this instance.",
+               "properties":{
+                  "0x0000":{
+                     "type":"integer",
+                     "title":"The 0x0000 schema",
+                     "description":"An explanation about the purpose of this instance.",
+                     "default":0
+                  },
+                  "0x0001":{
+                     "type":"integer",
+                     "title":"The 0x0001 schema",
+                     "description":"An explanation about the purpose of this instance.",
+                     "default":0
+                  }
+               }
+            }
+         }
+      }
+   }
+}

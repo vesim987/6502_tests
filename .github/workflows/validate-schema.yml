@@ -1,0 +1,16 @@
+on:
+  pull_request:
+    branches:
+      - master
+name: Pull request workflow
+jobs:
+  validate_unit_tests:
+    name: Validate unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Validate
+        uses: snapcart/json-schema-validator@v1.0.0
+        with:
+          json_schema: ./schemas/tests.schema
+          json_path_pattern: unit_tests/.*.json$
